@@ -1,0 +1,15 @@
+@(userForm:Form[models.UserData])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+@import helper._
+@if(userForm.hasGlobalErrors) {
+<ul>
+    @for(error <- userForm.globalErrors){
+    <li>@error.message</li>
+    }
+</ul>
+}
+<h1>WF Reactive System Login</h1>
+@helper.form(action = routes.LoginController.submitLogin) {
+    @helper.inputText(userForm("username"))
+    @helper.inputPassword(userForm("password"))
+    <input type ="submit" value ="Submit"/>
+}
